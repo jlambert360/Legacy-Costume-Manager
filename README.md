@@ -1,3 +1,3 @@
 # Legacy-Costume-Manager
 
-Combined repository for Stage Manager, Song Manager, and SSS Editor, along with shared library
+Updated version of costume manager for Legacy TE from https://github.com/libertyernie/BrawlManagers
