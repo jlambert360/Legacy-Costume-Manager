@@ -29,7 +29,6 @@ namespace BrawlCostumeManager
 
             if (!bres_cache1.TryGetValue(charNum, out bres))
             {
-
                 string f = "../menu/common/StockFaceTex.brres";
                 if (new FileInfo(f).Exists)
                 {
@@ -44,9 +43,6 @@ namespace BrawlCostumeManager
             return bres;
         }
 
-        /*/Textures(NW4R)/InfStc." + (i * 50 + (j <= 12 ? j + 1 : j)).ToString("D4")) };*/
-        //StockFaceTex.brres
-        //(costumeNum<=12 ? costumeNum + 1 : costumeNum)
         public override ResourceNode MainTEX0For(ResourceNode brres, int charNum, int costumeNum)
         {
             string path = "Textures(NW4R)/InfStc." + (charNum == 37 || charNum == 19 || charNum == 34 || charNum == 40 || charNum == 46 ? (charNum * 50 + (costumeNum <= 12 ? costumeNum + 1 : costumeNum)).ToString("D4") : (charNum * 50 + (costumeNum + 1)).ToString("D4"));

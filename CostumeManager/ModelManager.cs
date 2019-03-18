@@ -161,20 +161,33 @@ namespace BrawlCostumeManager {
 				
 			}
 		}
-
-		private static string getCharString(string path) {
+        
+        private static string getCharString(string path) {
 			string working = path.ToLower();
 			working = working.Substring(working.LastIndexOf("fit")+3);
-			int length = 0;
-			foreach (char c in working) {
-				if (c >= '0' && c <= '9') {
+            int length = 0;
+			foreach (var c in working) {
+				if (c >= 0 && c <= 51)
+                {
 					break;
-				} else {
+				}
+                else
+                {
 					length++;
 				}
 			}
-			working = working.Substring(0, length);
-			return working;
+
+            working = working.Substring(0, length);
+
+            if (working.Contains("altz") || working.Contains("altr"))
+            {
+                working = working.Substring(0, length - 4);
+                return working;
+            }
+            else
+            {
+                return working;
+            }
 		}
 
 		public void LoadModel(MDL0Node model) {
@@ -193,15 +206,15 @@ namespace BrawlCostumeManager {
 
 			modelPanel1.ClearAll();
 			modelPanel1.AddTarget((IRenderedObject)model);
-
+            
 			if (UseExceptions && PolygonsToDisable.ContainsKey(_charString)) {
-				foreach (int polygonNum in PolygonsToDisable[_charString]) {
-					MDL0ObjectNode poly = model.PolygonGroup.FindChild("polygon" + polygonNum, false) as MDL0ObjectNode;
+				foreach (string polygonNum in PolygonsToDisable[_charString]) {
+					MDL0ObjectNode poly = model.PolygonGroup.FindChild(polygonNum, false) as MDL0ObjectNode;
 					if (poly != null) poly.IsRendering = false;
 				}
 			}
-
-			Box box = model.GetBox();
+            
+            Box box = model.GetBox();
 			Vector3 min = box.Min, max = box.Max;
 			if (ZoomOut) {
 				min._x += 20;
@@ -241,34 +254,35 @@ namespace BrawlCostumeManager {
 				LoadModel(item as MDL0Node);
 			}
 		}
-
-
-
+        
 		public static string[] TexturesToDisable = {
-			"SamusTexASpc", "SamusTexBSpc", "SamusRef", "SamusTexC", "SamusTexD", "SamusTexDSpc", "Spe", // remove sphere
-			"Yoshi_Egg", // remove egg
-			"PlyKirby5KEyeYellow.1", // remove Final Smash eyes
 			"Pikachu_eyesYellow.00", // remove Final Smash eyes
-			"PeachTexEyeHigh", "PeachTexEyeWhite", "PeachTexEyeYellow", // remove black eyes
-			"ZeldaEyeHigh", // remove black eyes
+			"PeachTexEyeYellow", // remove Final Smash eyes
 			"IceclimberTexCYellow.00", // remove Final Smash eyes
-			"FitPikminRef", "FitPikminRef05", // remove helmet
-			"FitLucas_EyeYellow.00",
-			"FitPurin00EyeYellow.00",
-//			"FitToonLink_EyeWhite.0", "FitToonLink_EyeYellow", // remove FS eyes (and eye whites, so you can see the pupils)
-			"FitSonicBodyMask", "FitSonicHeadMask", "FitSonicEyeHighlight", // remove gray Sonic
-//			"FitSonicEnv01", "FitSonicEnv04", "FitSonicSphere", // remove sphere
+			"FitLucas_EyeYellow.00", // remove Final Smash eyes
+			"FitPurin00EyeYellow.00", // remove Final Smash eyes
 		};
-
-		public static Dictionary<string, int[]> PolygonsToDisable = new Dictionary<string, int[]> {
-			{"mario", new int[] {4,5,6,7,12,13}}, // open eyelids
-			{"luigi", new int[] {5,8,9,10,11,12,17}}, // open eyelids
-			{"ness", new int[] {1,2,5,6}}, // remove wild "intro" hair and FS eyes
-			{"zelda", new int[] {19,21,25}}, // open eyelids
-			{"olimar", new int[] {5}}, // "close" eyelids (normal facial expression for Olimar)
-			{"sonic", new int[] {10,11,14,15,16,18,20,21,22,24,26,27,28,29,30}}, // open eyelids, remove sphere, etc.
-			{"dedede", new int[] {19}}, // remove inflated Dedede
-		};
+        
+		public static Dictionary<string, string[]> PolygonsToDisable = new Dictionary<string, string[]> {
+			{"mario", new string[] { "polygon4", "polygon5", "polygon6", "polygon7", "polygon12", "polygon13"}}, // open eyelids
+			{"luigi", new string[] { "polygon5", "polygon8", "polygon9", "polygon10", "polygon11", "polygon12", "EyeYellowL", "EyeYellowR", "Damage_Eye", "Eyebrow_Damage", "Damage_Face", "FaceHurt", "MaskHurt", "Hair_NoHat"}}, // open eyelids
+			{"ness", new string[] { "polygon1", "polygon2", "polygon5", "polygon6", "polygon1_BurnHead", "polygon2BurnHead"}}, // remove wild "intro" hair and FS eyes
+			{"zelda", new string[] { "polygon19", "polygon21", "polygon25", "face_halfblink", "face_blink", "Blink", "Blink_Half", "Ouch", "face_ouch_"}}, // open eyelids
+			{"pikmin", new string[] {"polygon5", "helm"}}, // "close" eyelids (normal facial expression for Olimar)
+			{"sonic", new string[] {"polygon14", "polygon15", "polygon16", "polygon18", "polygon20", "polygon21", "polygon22", "polygon24", "polygon26", "polygon27", "polygon28", "polygon29", "polygon30"}}, // open eyelids, remove sphere, etc.
+			{"dedede", new string[] { "polygon12", "polygon13","polygon18", "polygon19", "newbloat","SwellBelt","puff1S"}}, // remove inflated Dedede
+            {"kirby", new string[] { "polygon6", "polygon7"}}, // remove Final Smash eyes
+            {"yoshi", new string[] {"polygon8", "polygon10"}}, // remove Final Smash eyes
+            {"fox", new string[] { "polygon9", "polygon10", "polygon11", "polygon12", "polygon13", "polygon14", "polygon15", "polygon16", "polygon20", "polygon21", "polygon22", "eyeLyellow", "eyeRyellow", "HeadBlink", "HeadOuch", "HeadHalfBlink"}}, // open eyelids
+            {"marth", new string[] { "polygon8","polygon9", "polygon10", "polygon11", "polygon13", "polygon14"}}, // open eyelids
+            {"pit", new string[] { "polygon14","polygon15", "polygon16", "polygon17", "polygon19", "polygon20", "polygon22", "polygon23", "polygon28", "polygon29", "polygon31", "polygon32", "Blink", "Mouth_Open", "Hurt", "Yellow_Eyes"}}, // open eyelids
+            {"szerosuit", new string[] { "polygon3", "polygon4", "polygon5", "polygon6", "polygon8", "polygon9", "polygon14", "polygon15", "polygon17", "polygon18"}}, // open eyelids
+            {"mewtwo", new string[] { "polygon6", "polygon7", "polygon10", "polygon11", "polygon12", "polygon13"}}, // open eyelids
+            {"ike", new string[] { "polygon7", "polygon8", "polygon9", "polygon10", "polygon11", "polygon15", "polygon18", "polygon19", "polygon20", "polygon24", "polygon36", "polygon37", "polygon38", "polygon42", "polygon45", "polygon46", "polygon47", "polygon51"}}, // open eyelids
+            {"roy", new string[] { "Roy_polygon7RY", "Roy_polygon8LY", "Half_Blink", "Mouth_Open", "hurt", "Blink", "FaceHalf", "FaceBlink", "FaceOuch", "FaceTalk", "EyeRYellow", "EyeLYellow"}}, // open eyelids
+            {"wolf", new string[] { "EyeYellow", "AngryWolfLeftEar", "AngryWolfFace", "AngryEyepatchBand", "BlinkWolfLeftEar3", "BlinkWolfFace", "BlinkEyepatchBand", "HalfWolfFace", "HalfWolfLeftEar4", "HalfEyepatchBand7", "polygon8", "polygon9", "polygon10", "polygon11", "polygon28", "polygon29", "polygon30", "polygon31", "polygon32", "polygon33", "polygon50", "polygon51", "polygon52", "polygon53", "polygon76", "polygon77", "polygon94", "polygon95", "polygon96", "polygon97", "polygon98", "polygon99"}}, // open eyelids
+            {"snake", new string[] { "face_halfblink", "eyelash_halfblink1", "eyelash_halfblink2", "face_blink", "eyelash_blink1", "eyelash_blink2", "face_ouch", "eyelash_ouch1", "eyelash_ouch2", "face_talk", "eyelash_talk1", "eyelash_talk2", "face_angry", "eyelash_angry1", "eyelash_angry2", "polygon0", "polygon1", "polygon2", "polygon3", "polygon4", "polygon5", "polygon6", "polygon7", "polygon8", "polygon9", "polygon10", "polygon14", "polygon15", "polygon16", "polygon17", "polygon18", "polygon19"}}, // open eyelids
+        };
 
 		public Bitmap GrabScreenshot(bool withTransparency) {
 			modelPanel1.Refresh();

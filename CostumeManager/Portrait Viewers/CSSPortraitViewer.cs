@@ -35,7 +35,7 @@ namespace BrawlCostumeManager
             new PortraitViewerTextureData(128, 32, (i,j) => "Misc Data [30]/Textures(NW4R)/MenSelchrChrNm." + i.ToString("D2") + "1"),
             new PortraitViewerTextureData(80, 56, (i,j) => "Misc Data [70]/Textures(NW4R)/MenSelchrChrFace." + (i < 47 ? i+1 : i).ToString("D3")),
             //new PortraitViewerTextureData(32, 32, (i,j) => "Misc Data [90]/Textures(NW4R)/InfStc." + (i*10 + j + 1).ToString("D3")),
-            new PortraitViewerTextureData(56, 14, (i,j) => "Misc Data [70]/Textures(NW4R)/MenSelchrChrNmS." + (i < 47 ? i+1 : i).ToString("D3")),
+            //new PortraitViewerTextureData(56, 14, (i,j) => "Misc Data [70]/Textures(NW4R)/MenSelchrChrNmS." + (i < 47 ? i+1 : i).ToString("D3")),
         };
         
         private string _openFilePath;
@@ -98,12 +98,12 @@ namespace BrawlCostumeManager
             Bitmap overlaid = new Bitmap(orig.Width, orig.Height);
             Graphics g = Graphics.FromImage(overlaid);
             g.DrawImage(orig,
-                new Rectangle(0, 0, 128, 128),
-                new Rectangle(0, 0, 128, 128),
+                new Rectangle(0, 0, 128, 160),
+                new Rectangle(0, 0, 128, 160),
                 GraphicsUnit.Pixel);
             g.DrawImage(blurred, new Point[] {
-                new Point(0, 98),
-                new Point(131, 98),
+                new Point(0, 84),
+                new Point(131, 84),
                 new Point(-3, 127)
             });
             textureData[0].Panel.BackgroundImage = overlaid;
@@ -163,30 +163,6 @@ namespace BrawlCostumeManager
             {
                 sc_selcharacter.Merge();
                 sc_selcharacter.Export(_openFilePath);
-            }
-        }
-
-        public void UpdateSSSStockIcons()
-        {
-            if (common5 == null)
-            {
-                MessageBox.Show(this.FindForm(), "common5.pac is not loaded - can't update automatically.\n" +
-                    "After saving sc_selcharacter.pac,  update the icons manually by replacing sc_selmap's " +
-                    "Misc Data [40] with sc_selcharacter's Misc Data [90].", "Cannot perform operation",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                ResourceNode css_stockicons = sc_selcharacter.FindChild("Misc Data [90]", false);
-                string tempFile = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".brres";
-                css_stockicons.Export(tempFile);
-                ResourceNode sss_stockicons = common5.FindChild("sc_selmap_en/Misc Data [40]", false);
-                sss_stockicons.Replace(tempFile);
-                try
-                {
-                    File.Delete(tempFile);
-                }
-                catch (Exception) { }
             }
         }
 

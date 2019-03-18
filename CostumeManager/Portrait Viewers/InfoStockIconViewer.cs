@@ -115,9 +115,6 @@ namespace BrawlCostumeManager
             this.Name = "InfoStockIconViewer";
             this.Size = new System.Drawing.Size(128, 48);
             this.ResumeLayout(false);
-
         }
-
-
     }
 }

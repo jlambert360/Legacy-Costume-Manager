@@ -18,6 +18,7 @@ namespace BrawlCostumeManager {
 		public override int PortraitHeight {
 			get { return 160; }
 		}
+
 		public override ResourceNode PortraitRootFor(int charNum, int costumeNum) {
 			ResourceNode bres;
 			if (!bres_cache.TryGetValue(charNum, out bres)) {
@@ -33,7 +34,7 @@ namespace BrawlCostumeManager {
 			}
 			return bres;
 		}
-        //(costumeNum<=12 ? costumeNum + 1 : costumeNum)
+        
         public override ResourceNode MainTEX0For(ResourceNode brres, int charNum, int costumeNum) {
 			string path = "Textures(NW4R)/MenSelchrFaceB." + (charNum * 10 + (costumeNum <= 12 ? costumeNum + 1 : costumeNum)).ToString("D3");
 			return brres.FindChild(path, false);

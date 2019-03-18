@@ -38,7 +38,7 @@
             this.use16ptFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.screenshotPortraitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateSSSStockIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyStockIconsToResultScreenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateMewtwoHatForCurrentKirbyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.limitModelViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,17 +54,17 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.updateCheck = new System.Windows.Forms.ToolStripButton();
             this.otherPVsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.costumeNumberLabel = new BrawlCostumeManager.CostumeNumberLabel();
-            this.battlePortraitViewer1 = new BrawlCostumeManager.BattleSinglePortraitViewer();
-            this.resultPortraitViewer1 = new BrawlCostumeManager.ResultSinglePortraitViewer();
             this.brawlSplitter3 = new BrawlManagerLib.BrawlSplitter();
             this.brawlSplitter2 = new BrawlManagerLib.BrawlSplitter();
             this.globalPVsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.brawlSplitter1 = new BrawlManagerLib.BrawlSplitter();
+            this.modelManager1 = new BrawlCostumeManager.ModelManager();
             this.cssPortraitViewer1 = new BrawlCostumeManager.CSSPortraitViewer();
             this.infoStockIconViewer1 = new BrawlCostumeManager.InfoStockIconViewer();
             this.resultSinglePortraitViewerStocks1 = new BrawlCostumeManager.ResultSinglePortraitViewerStocks();
-            this.brawlSplitter1 = new BrawlManagerLib.BrawlSplitter();
-            this.modelManager1 = new BrawlCostumeManager.ModelManager();
+            this.costumeNumberLabel = new BrawlCostumeManager.CostumeNumberLabel();
+            this.battlePortraitViewer1 = new BrawlCostumeManager.BattleSinglePortraitViewer();
+            this.resultPortraitViewer1 = new BrawlCostumeManager.ResultSinglePortraitViewer();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -81,7 +81,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(206, 285);
+            this.listBox1.Size = new System.Drawing.Size(206, 276);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -99,8 +99,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.listBox2);
-            this.splitContainer2.Size = new System.Drawing.Size(206, 486);
-            this.splitContainer2.SplitterDistance = 285;
+            this.splitContainer2.Size = new System.Drawing.Size(206, 471);
+            this.splitContainer2.SplitterDistance = 276;
             this.splitContainer2.TabIndex = 1;
             // 
             // listBox2
@@ -110,7 +110,7 @@
             this.listBox2.FormattingEnabled = true;
             this.listBox2.Location = new System.Drawing.Point(0, 0);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(206, 197);
+            this.listBox2.Size = new System.Drawing.Size(206, 191);
             this.listBox2.TabIndex = 0;
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
@@ -193,7 +193,7 @@
             this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.screenshotPortraitsToolStripMenuItem,
-            this.updateSSSStockIconsToolStripMenuItem,
+            this.copyStockIconsToResultScreenToolStripMenuItem,
             this.updateMewtwoHatForCurrentKirbyToolStripMenuItem});
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
@@ -207,12 +207,12 @@
             this.screenshotPortraitsToolStripMenuItem.Text = "Screenshot -> portraits";
             this.screenshotPortraitsToolStripMenuItem.Click += new System.EventHandler(this.screenshotPortraitsToolStripMenuItem_Click);
             // 
-            // updateSSSStockIconsToolStripMenuItem
+            // copyStockIconsToResultScreenToolStripMenuItem
             // 
-            this.updateSSSStockIconsToolStripMenuItem.Name = "updateSSSStockIconsToolStripMenuItem";
-            this.updateSSSStockIconsToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
-            this.updateSSSStockIconsToolStripMenuItem.Text = "Copy stock icons to SSS";
-            this.updateSSSStockIconsToolStripMenuItem.Click += new System.EventHandler(this.updateSSSStockIconsToolStripMenuItem_Click);
+            this.copyStockIconsToResultScreenToolStripMenuItem.Name = "copyStockIconsToResultScreenToolStripMenuItem";
+            this.copyStockIconsToResultScreenToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
+            this.copyStockIconsToResultScreenToolStripMenuItem.Text = "Copy stock icons to result screen";
+            this.copyStockIconsToResultScreenToolStripMenuItem.Click += new System.EventHandler(this.copyStockIconsToResultScreenToolStripMenuItem_Click);
             // 
             // updateMewtwoHatForCurrentKirbyToolStripMenuItem
             // 
@@ -348,8 +348,83 @@
             this.otherPVsFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.otherPVsFlowLayoutPanel.Location = new System.Drawing.Point(534, 25);
             this.otherPVsFlowLayoutPanel.Name = "otherPVsFlowLayoutPanel";
-            this.otherPVsFlowLayoutPanel.Size = new System.Drawing.Size(134, 486);
+            this.otherPVsFlowLayoutPanel.Size = new System.Drawing.Size(134, 471);
             this.otherPVsFlowLayoutPanel.TabIndex = 7;
+            // 
+            // brawlSplitter3
+            // 
+            this.brawlSplitter3.ControlToHide = this.splitContainer2;
+            this.brawlSplitter3.Location = new System.Drawing.Point(206, 25);
+            this.brawlSplitter3.Name = "brawlSplitter3";
+            this.brawlSplitter3.Size = new System.Drawing.Size(8, 471);
+            this.brawlSplitter3.TabIndex = 11;
+            this.brawlSplitter3.TabStop = false;
+            // 
+            // brawlSplitter2
+            // 
+            this.brawlSplitter2.AllowResizing = false;
+            this.brawlSplitter2.ControlToHide = this.otherPVsFlowLayoutPanel;
+            this.brawlSplitter2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.brawlSplitter2.Location = new System.Drawing.Point(526, 25);
+            this.brawlSplitter2.Name = "brawlSplitter2";
+            this.brawlSplitter2.Size = new System.Drawing.Size(8, 471);
+            this.brawlSplitter2.TabIndex = 10;
+            this.brawlSplitter2.TabStop = false;
+            // 
+            // globalPVsFlowLayoutPanel
+            // 
+            this.globalPVsFlowLayoutPanel.AutoSize = true;
+            this.globalPVsFlowLayoutPanel.Controls.Add(this.cssPortraitViewer1);
+            this.globalPVsFlowLayoutPanel.Controls.Add(this.infoStockIconViewer1);
+            this.globalPVsFlowLayoutPanel.Controls.Add(this.resultSinglePortraitViewerStocks1);
+            this.globalPVsFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.globalPVsFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.globalPVsFlowLayoutPanel.Location = new System.Drawing.Point(392, 25);
+            this.globalPVsFlowLayoutPanel.Name = "globalPVsFlowLayoutPanel";
+            this.globalPVsFlowLayoutPanel.Size = new System.Drawing.Size(134, 471);
+            this.globalPVsFlowLayoutPanel.TabIndex = 13;
+            // 
+            // brawlSplitter1
+            // 
+            this.brawlSplitter1.AllowResizing = false;
+            this.brawlSplitter1.ControlToHide = this.globalPVsFlowLayoutPanel;
+            this.brawlSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.brawlSplitter1.Location = new System.Drawing.Point(384, 25);
+            this.brawlSplitter1.Name = "brawlSplitter1";
+            this.brawlSplitter1.Size = new System.Drawing.Size(8, 471);
+            this.brawlSplitter1.TabIndex = 9;
+            this.brawlSplitter1.TabStop = false;
+            // 
+            // modelManager1
+            // 
+            this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.modelManager1.Location = new System.Drawing.Point(214, 25);
+            this.modelManager1.ModelPreviewSize = null;
+            this.modelManager1.Name = "modelManager1";
+            this.modelManager1.Size = new System.Drawing.Size(170, 471);
+            this.modelManager1.TabIndex = 1;
+            // 
+            // cssPortraitViewer1
+            // 
+            this.cssPortraitViewer1.Location = new System.Drawing.Point(3, 3);
+            this.cssPortraitViewer1.Name = "cssPortraitViewer1";
+            this.cssPortraitViewer1.NamePortraitPreview = false;
+            this.cssPortraitViewer1.Size = new System.Drawing.Size(128, 314);
+            this.cssPortraitViewer1.TabIndex = 3;
+            // 
+            // infoStockIconViewer1
+            // 
+            this.infoStockIconViewer1.Location = new System.Drawing.Point(3, 323);
+            this.infoStockIconViewer1.Name = "infoStockIconViewer1";
+            this.infoStockIconViewer1.Size = new System.Drawing.Size(128, 40);
+            this.infoStockIconViewer1.TabIndex = 12;
+            // 
+            // resultSinglePortraitViewerStocks1
+            // 
+            this.resultSinglePortraitViewerStocks1.Location = new System.Drawing.Point(3, 369);
+            this.resultSinglePortraitViewerStocks1.Name = "resultSinglePortraitViewerStocks1";
+            this.resultSinglePortraitViewerStocks1.Size = new System.Drawing.Size(128, 99);
+            this.resultSinglePortraitViewerStocks1.TabIndex = 7;
             // 
             // costumeNumberLabel
             // 
@@ -374,86 +449,11 @@
             this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 224);
             this.resultPortraitViewer1.TabIndex = 4;
             // 
-            // brawlSplitter3
-            // 
-            this.brawlSplitter3.ControlToHide = this.splitContainer2;
-            this.brawlSplitter3.Location = new System.Drawing.Point(206, 25);
-            this.brawlSplitter3.Name = "brawlSplitter3";
-            this.brawlSplitter3.Size = new System.Drawing.Size(8, 486);
-            this.brawlSplitter3.TabIndex = 11;
-            this.brawlSplitter3.TabStop = false;
-            // 
-            // brawlSplitter2
-            // 
-            this.brawlSplitter2.AllowResizing = false;
-            this.brawlSplitter2.ControlToHide = this.otherPVsFlowLayoutPanel;
-            this.brawlSplitter2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.brawlSplitter2.Location = new System.Drawing.Point(526, 25);
-            this.brawlSplitter2.Name = "brawlSplitter2";
-            this.brawlSplitter2.Size = new System.Drawing.Size(8, 486);
-            this.brawlSplitter2.TabIndex = 10;
-            this.brawlSplitter2.TabStop = false;
-            // 
-            // globalPVsFlowLayoutPanel
-            // 
-            this.globalPVsFlowLayoutPanel.AutoSize = true;
-            this.globalPVsFlowLayoutPanel.Controls.Add(this.cssPortraitViewer1);
-            this.globalPVsFlowLayoutPanel.Controls.Add(this.infoStockIconViewer1);
-            this.globalPVsFlowLayoutPanel.Controls.Add(this.resultSinglePortraitViewerStocks1);
-            this.globalPVsFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.globalPVsFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.globalPVsFlowLayoutPanel.Location = new System.Drawing.Point(392, 25);
-            this.globalPVsFlowLayoutPanel.Name = "globalPVsFlowLayoutPanel";
-            this.globalPVsFlowLayoutPanel.Size = new System.Drawing.Size(134, 486);
-            this.globalPVsFlowLayoutPanel.TabIndex = 13;
-            // 
-            // cssPortraitViewer1
-            // 
-            this.cssPortraitViewer1.Location = new System.Drawing.Point(3, 3);
-            this.cssPortraitViewer1.Name = "cssPortraitViewer1";
-            this.cssPortraitViewer1.NamePortraitPreview = false;
-            this.cssPortraitViewer1.Size = new System.Drawing.Size(128, 328);
-            this.cssPortraitViewer1.TabIndex = 3;
-            // 
-            // infoStockIconViewer1
-            // 
-            this.infoStockIconViewer1.Location = new System.Drawing.Point(3, 337);
-            this.infoStockIconViewer1.Name = "infoStockIconViewer1";
-            this.infoStockIconViewer1.Size = new System.Drawing.Size(128, 40);
-            this.infoStockIconViewer1.TabIndex = 12;
-            // 
-            // resultSinglePortraitViewerStocks1
-            // 
-            this.resultSinglePortraitViewerStocks1.Location = new System.Drawing.Point(3, 383);
-            this.resultSinglePortraitViewerStocks1.Name = "resultSinglePortraitViewerStocks1";
-            this.resultSinglePortraitViewerStocks1.Size = new System.Drawing.Size(128, 99);
-            this.resultSinglePortraitViewerStocks1.TabIndex = 7;
-            // 
-            // brawlSplitter1
-            // 
-            this.brawlSplitter1.AllowResizing = false;
-            this.brawlSplitter1.ControlToHide = this.globalPVsFlowLayoutPanel;
-            this.brawlSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.brawlSplitter1.Location = new System.Drawing.Point(384, 25);
-            this.brawlSplitter1.Name = "brawlSplitter1";
-            this.brawlSplitter1.Size = new System.Drawing.Size(8, 486);
-            this.brawlSplitter1.TabIndex = 9;
-            this.brawlSplitter1.TabStop = false;
-            // 
-            // modelManager1
-            // 
-            this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.modelManager1.Location = new System.Drawing.Point(214, 25);
-            this.modelManager1.ModelPreviewSize = null;
-            this.modelManager1.Name = "modelManager1";
-            this.modelManager1.Size = new System.Drawing.Size(170, 486);
-            this.modelManager1.TabIndex = 1;
-            // 
             // CostumeManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(668, 511);
+            this.ClientSize = new System.Drawing.Size(668, 496);
             this.Controls.Add(this.modelManager1);
             this.Controls.Add(this.brawlSplitter3);
             this.Controls.Add(this.splitContainer2);
@@ -496,7 +496,6 @@
 		private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem copyToToolStripMenuItem;
 		private BattleSinglePortraitViewer battlePortraitViewer1;
-		private System.Windows.Forms.ToolStripMenuItem updateSSSStockIconsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator separator2;
 		private System.Windows.Forms.ToolStripMenuItem swapPortraitsForWarioStylesToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem copyToOtherPacpcsToolStripMenuItem;
@@ -520,5 +519,6 @@
 		private System.Windows.Forms.ToolStripMenuItem use16ptFontToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton updateCheck;
         private ResultSinglePortraitViewerStocks resultSinglePortraitViewerStocks1;
+        private System.Windows.Forms.ToolStripMenuItem copyStockIconsToResultScreenToolStripMenuItem;
     }
 }
